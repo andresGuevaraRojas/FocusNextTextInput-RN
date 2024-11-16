@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useRef } from "react";
 import { TextInput,StyleSheet, TextInputProps, NativeSyntheticEvent, TextInputSubmitEditingEventData, TextInputFocusEventData } from "react-native";
 import { FormContext } from "./Form";
 
@@ -6,12 +6,10 @@ export default function InputForm({index=0,onSubmitEditing,onFocus,...props}:Tex
     const formContext = useContext(FormContext)
     const inputRef = useRef<TextInput>(null)
 
-    useEffect(()=>{
-        if(formContext?.currentIndex === index){
-            inputRef.current?.focus()
-        }
-    },[formContext?.currentIndex])
-
+    if(formContext?.currentIndex === index){
+        inputRef.current?.focus()
+    }
+    
     return <TextInput 
         {...props}
         ref={inputRef}     

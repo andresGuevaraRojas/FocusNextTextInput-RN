@@ -1,6 +1,6 @@
 import Form from "@/components/Form";
 import InputForm from "@/components/InputForm";
-import { View, TextInput, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet, Text } from "react-native";
 
 export default function Index() {
   return (
@@ -8,10 +8,15 @@ export default function Index() {
       style={styles.container}
     >
       <Form lastIndex={2} style={styles.form}>
+        <Text>Input 1</Text>
         <InputForm index={0} style={styles.input} />
+        
+        <Text>Input 2</Text>
         <InputForm index={1} style={styles.input}/>
+
+        <Text>Input 3</Text>
         <InputForm index={2} style={styles.input}/>
-      </Form>
+      </Form>      
     </View>
   );
 }
