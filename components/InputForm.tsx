@@ -8,6 +8,7 @@ export default function InputForm({index=0,onSubmitEditing,onFocus,...props}:Tex
 
     useEffect(()=>{
         const subs = formContext.onCurrentIndexChange((currentIndex)=>{
+            console.log({currentIndex})
             if(currentIndex === index){
                 inputRef.current?.focus()
             }
@@ -20,8 +21,7 @@ export default function InputForm({index=0,onSubmitEditing,onFocus,...props}:Tex
 
     
     
-    return <TextInput 
-        {...props}
+    return <TextInput        
         ref={inputRef}     
         onSubmitEditing={(e: NativeSyntheticEvent<TextInputSubmitEditingEventData>)=>{
             if(onSubmitEditing){
@@ -35,6 +35,7 @@ export default function InputForm({index=0,onSubmitEditing,onFocus,...props}:Tex
             }
             formContext?.updateCurrentIndex(index)
         }}
+        {...props}
         
     />
 }
