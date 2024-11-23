@@ -7,14 +7,13 @@ export default function InputForm({index=0,onSubmitEditing,onFocus,...props}:Tex
     const inputRef = useRef<TextInput>(null)
 
     useEffect(()=>{
-        const subs = formContext.onCurrentIndexChange((currentIndex)=>{
-            console.log({currentIndex})
+        const subs = formContext.onCurrentIndexChange((currentIndex)=>{                    
             if(currentIndex === index){
                 inputRef.current?.focus()
             }
         })
 
-        return ()=>{
+        return ()=>{               
             subs()
         }
     },[])

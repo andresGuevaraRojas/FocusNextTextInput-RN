@@ -1,5 +1,4 @@
-import React, { createContext, ReactNode, useRef } from "react";
-import {StyleProp, View, ViewStyle } from "react-native";
+import React, { createContext, ReactNode, useMemo } from "react";
 import EventEmitter from "react-native/Libraries/vendor/emitter/EventEmitter";
 
 type Context = {
@@ -9,8 +8,10 @@ type Context = {
 
 export const FormContext = createContext<Context | null>(null)
 
-export default function Form({lastIndex,children,style}:{lastIndex:number,children:ReactNode,style:StyleProp<ViewStyle>}) {
-    const eventEmmiter = new EventEmitter()
+export default function Form({lastIndex,children}:{lastIndex:number,children:ReactNode}) {
+    const eventEmmiter = useMemo(()=>{
+        return new EventEmitter()
+    },[])
 
     return (
         <FormContext.Provider value={{            
@@ -20,16 +21,14 @@ export default function Form({lastIndex,children,style}:{lastIndex:number,childr
                 }                                
                 eventEmmiter.emit('onCurrentIndexChange',index)
             },                      
-            onCurrentIndexChange:(callback)=>{
+            onCurrentIndexChange:(callback)=>{                
                 const sub = eventEmmiter.addListener('onCurrentIndexChange',callback)
                 return ()=>{                   
                     sub.remove()
                 }
             }
-        }}>
-            <View style={style}>
-                {children}
-            </View>            
+        }}>           
+            {children}          
         </FormContext.Provider>
     )
 }

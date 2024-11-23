@@ -6,20 +6,24 @@ import { View, StyleSheet, Text } from "react-native";
 export default function Index() {
 
   const [name,setName] = useState("")
+
   return (
     <View
       style={styles.container}
     >
-      <Form lastIndex={2} style={styles.form}>
-        <Text>Input 1</Text>
-        <InputForm index={0} style={styles.input} value={name} onChangeText={text=>{setName(text)}} />
-        
-        <Text>Input 2</Text>
-        <InputForm index={1} style={styles.input}/>
+      <View style={styles.form}>
+        <Form lastIndex={2}>
+          <Text>Input 1</Text>
+          <InputForm index={0} style={styles.input} value={name} onChangeText={text=>{setName(text)}} />
+          
+          <Text>Input 2</Text>
+          <InputForm index={1} style={styles.input}/>
 
-        <Text>Input 3</Text>
-        <InputForm index={2} style={styles.input}/>
-      </Form>
+          <Text>Input 3</Text>
+          <InputForm index={2} style={styles.input}/>
+        </Form>       
+      </View>
+      
     </View>
   );
 }
