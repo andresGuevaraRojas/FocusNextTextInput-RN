@@ -1,14 +1,30 @@
 import { FormContext } from "@/components/Form"
-import { useContext } from "react"
+import { RefObject, useContext, useEffect } from "react"
+import { TextInput } from "react-native"
 
-const useForm = ()=>{
+const useForm = (ref:RefObject<TextInput>,index:number)=>{
     const context = useContext(FormContext)
 
     if(!context){
         throw Error("Context can´t be null")
     }
 
-    return context
+    useEffect(()=>{
+        const subs = context.onChangeFocusedInputIndex((currentIndex)=>{
+            if(currentIndex === index){                
+                ref.current?.focus()
+            }
+        })
+
+        return ()=>{               
+            subs()
+        }
+    },[])
+
+    return {
+        focusNextTextInput:context.focusNextTextInput,
+        focusTextInput:context.focusTextInput,        
+    }
 }
 
 export default useForm

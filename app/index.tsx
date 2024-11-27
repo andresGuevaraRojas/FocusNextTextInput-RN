@@ -17,7 +17,7 @@ export default function Index() {
           <InputForm index={0} style={styles.input} value={name} onChangeText={text=>{setName(text)}} />
           
           <Text>Input 2</Text>
-          <InputForm index={1} style={styles.input}/>
+          <InputForm autoFocus index={1} style={styles.input}/>
 
           <Text>Input 3</Text>
           <InputForm index={2} style={styles.input}/>
